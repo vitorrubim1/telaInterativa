@@ -1,0 +1,322 @@
+/*Importando a font*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
+*{
+    /*Resetando o CSS*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+.container{
+    display: flex; /*Alinhar as div's verticalmente*/
+    justify-content: center; /*Alinhar o conteúdo ao centro*/
+    align-items: center; /*Para realmente ajustar, precisa-se de uma altura definida*/
+    height: 100vh; /*View port Height, tamanho do monitor*/
+    background-color: #ecf0f1;
+}
+/*Esta class está no first e second content*/
+.content{
+    background-color: #fff;
+    border-radius: 15px;
+    width: 960px;
+    height: 60%;
+    justify-content:space-between;
+    align-items: center;
+    position: relative;
+}
+.content::before{
+    content: "";
+    position: absolute; /*Absolut tem como base o bloco anterior que tem relative, que no caso desse é o content*/
+    background-color: #4747d1;
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    left:0;
+}
+.title{
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.title-primary{
+    color:#fff;
+}
+.title-second{
+    color:#4747d1;
+}
+.description{
+    font-size: 14px;
+    font-weight: 300; /*Para deixar a letra fina*/
+    line-height: 30px; /*Altura de linhas*/
+}
+.description-primary{
+    color: #fff;
+}
+.description-second{
+    color: #7f8c8d;
+}
+.btn{
+    /*Aqui eu estilizo, oq é pertinente aos dois botões*/
+    border-radius: 15px;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 10px;
+    padding: 10px 50px; /*Distância de cima a baixo, da extrema direita e esquerda*/
+    cursor: pointer;
+    font-weight: bold;
+    width: 150px;
+    align-self: center; /*centraliza o botão pq o pai dele está flex*/
+    border-width: 0;
+    margin-top: 1rem;
+}
+.btn-primary{
+    background-color: transparent;
+    border: 1px solid #fff;
+    transition: background-color .5s; /*Para fazer a transição de cor, mais suave*/
+}
+.btn-primary:hover{
+    background-color: #fff;
+    color:#4747d1; 
+}
+.btn-second{
+    background-color:#4747d1;
+    border: 1px solid #fff;
+    transition: background-color .5s; /*Para fazer a transição de cor, mais suave*/
+}
+.btn-second:hover{
+    background-color: transparent;
+    color:#4747d1;   
+    border: 1px solid #4747d1;
+
+}
+.first-content{
+    display: flex;
+}
+.first-content .second-column{
+    z-index: 11;
+}
+.first-column{
+    text-align: center;
+    width: 40%;
+    z-index: 10; /*Para sobrepor o ::before*/
+}
+.second-column{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.social-media{
+    margin: 1rem 0;
+}
+/*poupar css*/
+.link-social-media:not(:first-child){
+    margin-left: 10px;
+}
+.link-social-media .item-social-media{
+    transition: background-color .5s;
+}
+.link-social-media:hover .item-social-media{
+    background-color: #4747d1;
+    color: #fff;
+    border-color: #4747d1;
+}
+.list-social-media{
+    display: flex;
+    list-style-type: none;
+}
+.item-social-media{
+    border:1px solid #bdc3c7;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    /*o icon é considerada uma fonte então da pra alinhar normalmente*/
+    line-height: 35px;
+    text-align: center;
+    margin-left: 10px;
+    color:#95a5a6;
+}
+
+.form{
+    display: flex;
+    flex-direction: column; /*Para deixar os inputs um de baixo do outro*/
+    width: 55%;
+}
+.form input{
+    height: 45px;
+    width: 100%;
+    border: none;
+    background-color: #ecf0f1;
+}
+.label-input{
+    background-color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    margin: 8px;
+}
+.icon-modify{
+    color:#798181;
+    padding: 0 5px;
+}
+/*SEGUNDO CONTEÚDO*/
+.second-content{
+    position: absolute; /*Para sobrepor a div first-content*/
+    display: flex;
+}
+.second-content .first-column{
+    order: 2; /*Para inverter a coluna*/
+    z-index: -1;
+}
+.second-content .second-column{
+    order: 1; /*Para inverter a coluna*/
+    z-index: -1;    
+}
+.password{
+    color:#34495e;
+    font-size: 14px;
+    margin: 15px 0;
+    text-align: center;
+}
+.password::first-letter{
+    text-transform: capitalize;/*primeira letra Maiuscula*/
+}
+
+/*Com JS eu "apago" o first-content com seus conteúdos eu sobreponho com second-content*/
+
+.sign-in-js .first-content .first-column{
+    z-index: -1;
+}
+.sign-in-js .second-content .second-column{
+    z-index: 11;
+}
+.sign-in-js .second-content .first-column{
+    z-index: 13;
+}
+
+/*Aqui eu arrasto o menu para a esquerda*/
+.sign-in-js .content::before{
+    left: 60%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    animation: slidein 1s forwards; /*Aqui chama a animação e determina o tempo*/
+    z-index: 12;
+}
+.sign-up-js .content::before{
+    animation: slideout 1s forwards;
+    z-index: 12;
+}
+.sign-up-js .second-content .first-column,
+.sign-up-js .second-content .second-column{
+    z-index: -1;
+}
+.sign-up-js .first-content .second-column{
+    z-index: 11;
+}
+.sign-up-js .first-content .first-column{
+    z-index: 13;
+}
+/*DESLOCAMENTO DE CONTEÚDO POR TRÁS DO CONTENT::BEFORE*/
+.sign-in-js .first-content .second-column{
+    z-index: -1;
+    position: relative;
+    animation: deslocamentoEsq 1s forwards;
+}
+.sign-up-js .second-content .second-column{
+    position: relative;
+    z-index: -1;
+    animation: deslocamentoDir 1s forwards;
+}
+/*ANIMAÇÃO CSS PARA O CONTEÚDO*/
+@keyframes deslocamentoEsq{
+    from{
+        left: 0;
+        opacity: 1;
+        z-index: 12;
+    }
+    25%{
+        left: -80px;
+        opacity: .5;
+
+    }
+    50%{
+        left:-100px;
+        opacity: .2;
+    }
+    to{
+        left:-110px;
+        opacity: 0;
+    }
+}
+
+@keyframes deslocamentoDir{
+    from{
+        left:0;
+        z-index: 12;
+    }
+    25%{
+        left: 80px;
+    }
+    50%{
+        left: 100px;
+    }
+    to{
+        left: 110px;
+        z-index: -1;
+    }
+}
+
+/*ANIMAÇÃO CSS*/
+@keyframes slidein{
+    from{
+        left:0;
+        width: 40%;
+    }
+    25%{
+        left: 5%;
+        width: 50%;
+    }
+    50%{
+        left: 25%;
+        width: 50%;
+    }
+    75%{
+        left: 50%;
+        width: 50%;
+    }
+    to{
+        left:60%;
+        width:40%;
+
+    }
+}
+
+@keyframes slideout{
+    from{
+        left:60%;
+        width:40%;
+    }
+    25%{
+        left: 45%;
+        width: 50%;
+    }
+    50%{
+        left: 25%;
+        width: 50%;
+    }
+    75%{
+        left: 5%;
+        width: 50%;
+    }
+    to{
+       
+        left:0;
+        width: 40%;
+
+    }
+}
